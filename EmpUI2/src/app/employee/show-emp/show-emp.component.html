@@ -1,0 +1,67 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right m-2" 
+    data-toggle="modal" data-target="#exampleModal"
+    (click)="addClick()" data-backdrop="static" data-keyboard="false">
+    Add Employee
+</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-add-edit-emp [emp]="emp" *ngIf="ActivateAddEditEmpComp">
+          </app-add-edit-emp>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <td>Search By:</td>
+        <td>
+            <select class="form-control" [(ngModel)]="selectedQuantity">
+                <option *ngFor="let option of Searchoptions" [value]="option" >{{option}}</option>
+            </select>
+        </td>
+        <td>Enter Search Value:</td>
+        <td>
+            <input type="text" [(ngModel)]="SearchValue" class="form-control" (input)="getSearchData()" />
+        </td>
+    </tr>
+</table>
+
+  <table class="table table-striped">
+      <thead>
+          <th>EmployeeId</th>
+          <th>EmployeeName</th>
+          <th>Department</th>
+          <th>DateOfJoining</th>
+      </thead>
+      <tbody>
+          <tr *ngFor="let emp of EmployeeList">
+              <td>{{emp.EmployeeId}}</td>
+              <td>{{emp.EmployeeName}}</td>
+              <td>{{emp.Department}}</td>
+              <td>{{emp.DateOfJoining}}</td>
+              <td>
+                <button type="button" class="btn btn-light"
+                data-toggle="modal" data-target="#exampleModal"
+    (click)="editClick(emp)" data-backdrop="static" data-keyboard="false"
+                >Edit</button>
+                <button type="button" class="btn btn-danger" (click)="deleteClick(emp)">Delete</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>

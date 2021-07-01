@@ -1,0 +1,37 @@
+<table class="table table-bordered table-condensed">
+    <tr>
+        <td>EmployeeIds</td>
+    </tr>
+    <td>
+        <select class="form-control" (change)="onOptionsSelected($event)">
+            <option value="-1">Select:</option>
+            <option *ngFor="let emp of Employees" [value]="emp.EmployeeId" >{{emp.EmployeeId}}</option>
+        </select>
+    </td>
+</table>
+
+<div class="d-flex flex-row db-highlight mb-3">
+
+    <div class="form-group row">
+
+        <label class="col-sm-2 col-form-label">Employee Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="EmployeeName" placeholder="Name" readonly>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Department</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="Department" placeholder="Department" readonly>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Salary</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="Salary" placeholder="Salary">
+        </div>
+
+
+    </div>
+
+</div>
+
+<button (click)="updateSalary()" class="btn btn-primary">Update</button>
